@@ -1,14 +1,14 @@
-########################
-# Trade Date Functions #
-########################
+#######################
+# Trade Day Functions #
+#######################
 
 
-#' Nearest business day
+#' Nearest trade date
 #'
-#' If the current date is a business day, returns the current date.
+#' If the current date is a trade date, returns the current date.
 #' Otherwise return the next business day.
 #'
-#' @param current_date date
+#' @param dt date
 #'
 #' @return date
 #' @export
