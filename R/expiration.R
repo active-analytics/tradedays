@@ -10,6 +10,7 @@
 #' @param dt_friday date
 #'
 #' @return boolean
+#' @export
 is_third_friday <- function(dt_friday){
 
     # exception-handling to add
