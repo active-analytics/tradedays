@@ -8,15 +8,16 @@ Authors@R:
            email = "pritam@activeanalytics.io",
            )
 Description: Working with options data requires convenient handling of 
-    option expiration dates.  This package is my collection of convenience
-    functions to work with options.
+    option expiration dates and trade dates.  This package is my collection 
+    of convenience functions to work with these dates.  Many of these
+    functions are build on the foundation of the bizdays package.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
     bizdays,
-    timeDate,
-    lubridate
+    lubridate,
+    timeDate
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
