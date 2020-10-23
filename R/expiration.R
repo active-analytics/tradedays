@@ -158,3 +158,54 @@ monthly_last_tradeday <- function(year, month){
     dt_last_td
 }
 
+
+#' Find the next monthly expiration
+#'
+#' For the given input date, will find the next expiration that's after the
+#' end-of-day of the input date
+#'
+#' @param dt date
+#'
+#' @return date
+#' @export
+next_monthly_expiration <- function(dt) {
+
+    ## OPEN QUESTION: what should the behavior be when expirations
+    ## are defined on Saturdays and we input a Friday.  Currently, just
+    ## give the following Saturday.  But not sure if that is what we want.
+    dt <- lubridate::ymd(dt)
+
+    # extracting the year and month from the test date
+    year <- lubridate::year(dt)
+    month <- lubridate::month(dt)
+
+    # calculating the
+    curr_month_exp <- monthly_expiration(year, month)
+
+    if (dt < curr_month_exp) {
+
+        # if the test-date is before the current month's option expiration
+        # then the next expiration is just the current month's expiration
+        dt_next_exp <- curr_month_exp
+
+    } else {
+
+        # if the test-date is on or after the current month's expiration,
+        # then the next expiration is the next month's expiration
+
+        # creating the first of the month
+        dt_first_of_month <- lubridate::floor_date(dt)
+
+        # calculating the first of the next month
+        dt_first_of_next_month <-
+            dt_first_of_month + lubridate::period(1, "month")
+
+        # extracting the month and year from the first of the next month
+        next_year = lubridate::year(dt_first_of_next_month)
+        next_month = lubridate::month(dt_first_of_next_month)
+
+        dt_next_exp <- monthly_expiration(next_year, next_month)
+    }
+
+    dt_next_exp
+}

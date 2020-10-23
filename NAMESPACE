@@ -3,3 +3,4 @@
 export(monthly_expiration)
 export(monthly_last_tradeday)
 export(nearest_tradeday)
+export(next_monthly_expiration)
