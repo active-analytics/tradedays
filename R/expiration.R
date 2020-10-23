@@ -2,8 +2,6 @@
 ## Option Expiration Functions ##
 #################################
 
-
-
 #' Check if third Friday of month
 #'
 #' This function checks if the given Friday is the
@@ -140,5 +138,23 @@ monthly_expiration <- function(year, month){
     dt_monthly_exp
 }
 
+#' Last trade-date for monthly expiration
+#'
+#' Use this function to get the last trade date for the regular-expiration
+#' option for this year month.
+#'
+#' @param year integer
+#' @param month integer
+#'
+#' @export
+monthly_last_tradeday <- function(year, month){
 
+    dt_monthly_exp <- monthly_expiration(year, month)
+    dt_last_td <- dt_monthly_exp
+    # prior to 2/20/2015, expiration date was a Saturday
+    if(dt_monthly_exp < lubridate::ymd(20150220)){
+        dt_last_td <- bizdays::add.bizdays(dt_monthly_exp, -1)
+    }
+    dt_last_td
+}
 
