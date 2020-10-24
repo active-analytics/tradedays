@@ -9,7 +9,8 @@
 #'
 #' @return dataframe
 #' @export
-backtest_weekly_expirations <- function(start_date, end_date){
+backtest_weekly_expirations <- function(start_date=20020101,
+                                        end_date=20181231){
 
     # to avoid "no visible binding" warning from devtools::check()
     df_expiration <- NULL
@@ -111,15 +112,9 @@ backtest_weekly_expirations <- function(start_date, end_date){
             #, realized_vol, ret
         )
 
-    # populating d2x column
-    temp_func <- function(from, to){
-        # was getting an error when I used bizdays directly pmap_int()
-        as.integer(bizdays::bizdays(from, to))
-    }
-    df_expiration$d2x <-
-        purrr::pmap_int(
-            list(df_expiration$execution, df_expiration$expiration), temp_func
-        )
+    df_expiration <-
+        df_expiration %>%
+            dplyr::mutate(d2x = as.integer(bizdays::bizdays(.data$execution, .data$expiration)))
 
     # move this logic into deltaneutral package
     # this is a data quirk, and this package should be data agnostic

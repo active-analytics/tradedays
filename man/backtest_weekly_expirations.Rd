@@ -4,7 +4,7 @@
 \alias{backtest_weekly_expirations}
 \title{Backtest weekly expirations}
 \usage{
-backtest_weekly_expirations(start_date, end_date)
+backtest_weekly_expirations(start_date = 20020101, end_date = 20181231)
 }
 \arguments{
 \item{start_date}{date}
