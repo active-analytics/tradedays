@@ -19,11 +19,10 @@ Imports:
     dplyr,
     lubridate,
     magrittr,
-    purrr,
     rlang,
     tibble,
     timeDate
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Suggests: 
     testthat
 Depends: 

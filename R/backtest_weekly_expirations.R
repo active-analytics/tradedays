@@ -102,12 +102,24 @@ backtest_weekly_expirations <- function(start_date=20020101,
         df_expiration %>%
         dplyr::mutate(execution = dplyr::lag(.data$last_trade_date))
 
+    # removing .data - that's why this is commented out
+    # df_expiration <-
+    #     df_expiration[-1, ] %>%
+    #     dplyr::select(
+    #         #underlying,
+    #         .data$monthly, .data$expiration, .data$last_trade_date
+    #         , .data$execution, .data$d2x
+    #         #, num_opts, exec_day_volume
+    #         #, realized_vol, ret
+    #     )
+
+    # removing .data
     df_expiration <-
         df_expiration[-1, ] %>%
         dplyr::select(
             #underlying,
-            .data$monthly, .data$expiration, .data$last_trade_date
-            , .data$execution, .data$d2x
+            "monthly", "expiration", "last_trade_date"
+            , "execution", "d2x"
             #, num_opts, exec_day_volume
             #, realized_vol, ret
         )
